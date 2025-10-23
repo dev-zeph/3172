@@ -1,0 +1,77 @@
+# Activity / Lab / Assignment / Project Title
+
+
+* *Date Created*: 20 10 2025
+* *Last Modification Date*: 20 10 2025
+
+* *Web Link*: <https://web.cs.dal.ca/~zephaniah/csci3172/activities/lecture9/>
+* *Lab URL*: <https://git.cs.dal.ca/zephaniah/3172.git>
+
+
+## Authors
+* [Chizulu Zephaniah](ch885837@dal.ca) - (Role)
+
+
+## Built With
+Not Applicable.
+
+## Sources Used
+Not Applicable.
+
+
+
+## Artificial Intelligence Tools Used
+An Artificial Intelligence tool was used to generate a "web-server-trouble" document for when i find issues uploading 
+my files to timberlea. 
+
+- Prompt provided: 
+"create a sample md file in the root folder to for me ro come back to whenever i face issues."
+
+- Answer 
+"Perfect! I've created a comprehensive troubleshooting guide at web-server-troubleshooting.md.
+
+This file includes:
+
+✅ Quick fix commands for permission issues
+✅ Step-by-step upload process with SCP and SSH
+✅ Permission explanations (755 vs 644)
+✅ Troubleshooting checklist to work through systematically
+✅ Emergency reset commands if everything breaks
+✅ Quick reference section for fast lookup
+
+The file covers the most common issues you'll encounter when deploying to Dal's web server, including:
+
+Permission problems (403 Forbidden errors)
+File upload procedures
+Directory structure requirements
+Symbolic link issues
+File naming problems
+Now whenever you face similar issues, just open this file and follow the commands! You can also add your own notes and solutions as you encounter new problems."
+
+- Text Generated 
+
+# Web Server Fix
+
+## When website doesn't work after upload:
+
+1. **Upload files:**
+   ```bash
+   scp -r /path/to/project zephaniah@timberlea.cs.dal.ca:~/public_html/csci3172/activities/
+   ```
+
+2. **SSH to server:**
+   ```bash
+   ssh zephaniah@timberlea.cs.dal.ca
+   ```
+
+3. **Fix permissions:**
+   ```bash
+   find ~/public_html -type d -exec chmod 755 {} \;
+   find ~/public_html -type f -exec chmod 644 {} \;
+   ```
+
+4. **Test website:**
+   `https://web.cs.dal.ca/~zephaniah/csci3172/activities/projectname/`
+
+## Acknowledgments
+Not Applicable.
