@@ -5,6 +5,10 @@
 1. **Upload files:**
    ```bash
    scp -r /path/to/project zephaniah@timberlea.cs.dal.ca:~/public_html/csci3172/activities/
+
+
+   for instance 
+ scp -r /Users/zephaniahchizulu/Desktop/3172/labs/lab2 zephaniah@timberlea.cs.dal.ca:~/public_html/csci3172/labs/
    ```
 
 2. **SSH to server:**
@@ -14,8 +18,10 @@
 
 3. **Fix permissions:**
    ```bash
-   find ~/public_html -type d -exec chmod 755 {} \;
-   find ~/public_html -type f -exec chmod 644 {} \;
+   ssh yourCSID@timberlea.cs.dal.ca
+   cd public_html/csci3172/labs/lab2
+   find . -type d -exec chmod 755 {} \;
+  find . -type f -exec chmod 644 {} \;
    ```
 
 4. **Test website:**

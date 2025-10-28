@@ -1,0 +1,41 @@
+# Lecture 10: Regular Expressions Activity
+
+* *Date Created*: Mondat, October 27 2025
+* *Last Modification Date*: Monday, October 27 2025
+* *Git Lab URL*: https://git.cs.dal.ca/zephaniah/3172.git
+
+## Authors
+* Chizulu Zephaniah(ch885837@dal.ca) - (Developer)
+
+## Regular Expressions
+
+### First Name
+- Regex: /^[a-zA-Z]+(?: [a-zA-Z]+)?$/i
+- Test Cases Passed: John
+- Test Cases Failed: Oxlade-Chamberlain
+
+### Last Name
+- Regex: /^[a-zA-Z]+(?: [a-zA-Z]+)?$/i
+- Test Cases Passed: Jack
+- Test Cases Failed: Theorne-Greyjoy
+
+### Email
+- Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+- Test Cases Passed: zeph@gmail.com
+- Test Cases Failed: z@g.america
+### Password
+- Regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{30,}$/
+- Test Cases Passed: Asjs*jsmm1mshnsnsnsnsnsnsnsnsnsnjadsnejncjnekdn.longerthan30characters.hahahahaidk?
+- Test Cases Failed: MyPassword123
+
+## Reflection
+- Regexr provides me instant feedback on the regex pattern i create and helps me test edge cases
+- Challenges may rise in email regex where the last domain is above 6 letters
+
+
+## Sources Used
+- regexr.com for testing.
+- Test cases from L10-RegEx Test Case.txt.
+
+## Artificial Intelligence Tools Used
+- ChatGpt was used to generate a template for this txt file, to which was edited. Work and testing on regex is completed by me.
