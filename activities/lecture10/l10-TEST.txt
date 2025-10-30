@@ -5,19 +5,19 @@
 * *Git Lab URL*: https://git.cs.dal.ca/zephaniah/3172.git
 
 ## Authors
-* Chizulu Zephaniah(ch885837@dal.ca) - (Developer)
+* Chizulu Zephaniah(ch885837@dal.ca) 
 
 ## Regular Expressions
 
 ### First Name
 - Regex: /^[a-zA-Z]+(?: [a-zA-Z]+)?$/i
-- Test Cases Passed: John
-- Test Cases Failed: Oxlade-Chamberlain
+- Test Cases Passed: JohnSnow
+- Test Cases Failed: Oxlade-Chamberlain (not inclusive of a dash)
 
 ### Last Name
 - Regex: /^[a-zA-Z]+(?: [a-zA-Z]+)?$/i
-- Test Cases Passed: Jack
-- Test Cases Failed: Theorne-Greyjoy
+- Test Cases Passed: Branthebooring
+- Test Cases Failed: Theorne-Greyjoy (not inclusive of a dash)
 
 ### Email
 - Regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
