@@ -21,6 +21,9 @@ How to Run/Test:
 Open index.html (registration) or login.html (login) in browser. Test inputs and check console.
 
 Access URL:
-https://web.cs.dal.ca/~zephaniah/csci3172/labs/lab3/
+https://web.cs.dal.ca/~zephaniah/csci3172/labs/lab3/index.html
+
+timberlea:
+https://web.cs.dal.ca/~zephaniah/csci3172/labs/lab3/index.html
 
 

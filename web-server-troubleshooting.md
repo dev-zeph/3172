@@ -19,7 +19,7 @@
 3. **Fix permissions:**
    ```bash
    ssh yourCSID@timberlea.cs.dal.ca
-   cd public_html/csci3172/labs/lab2
+   cd public_html/csci3172/labs/lab3
    find . -type d -exec chmod 755 {} \;
   find . -type f -exec chmod 644 {} \;
    ```

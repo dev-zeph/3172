@@ -148,8 +148,7 @@ addEventListener('DOMContentLoaded', () => {
         getElement(fieldId).classList.add('error');
     };
 
-   
-    // Login handler
+  
     if (loginForm) {
         loginForm.addEventListener("submit", event => {
             event.preventDefault();
@@ -179,7 +178,7 @@ addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Registration handler
+
     if (registrationForm) {
         registrationForm.addEventListener("submit", event => {
         event.preventDefault();
@@ -226,7 +225,6 @@ addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Real-time validation for registration
     if (registrationForm) {
         const validateField = (fieldId, validator, errorId, message) => {
             const field = getElement(fieldId);

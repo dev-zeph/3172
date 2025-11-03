@@ -56,7 +56,7 @@ Now whenever you face similar issues, just open this file and follow the command
 
 1. **Upload files:**
    ```bash
-   scp -r /path/to/project zephaniah@timberlea.cs.dal.ca:~/public_html/csci3172/activities/
+   scp -r /Users/zephaniahchizulu/Desktop/3172/labs/lab3 zephaniah@timberlea.cs.dal.ca:~/public_html/csci3172/labs/lab3
    ```
 
 2. **SSH to server:**
@@ -66,12 +66,12 @@ Now whenever you face similar issues, just open this file and follow the command
 
 3. **Fix permissions:**
    ```bash
-   find ~/public_html -type d -exec chmod 755 {} \;
-   find ~/public_html -type f -exec chmod 644 {} \;
+ find ~/public_html/csci3172/labs/lab3 -type d -exec chmod 755 {} \;
+find ~/public_html/csci3172/labs/lab3 -type f -exec chmod 644 {} \;
    ```
 
 4. **Test website:**
-   `https://web.cs.dal.ca/~zephaniah/csci3172/activities/projectname/`
+   `https://web.cs.dal.ca/~zephaniah/csci3172/activities/labs/lab3/index.html`
 
 ## Acknowledgments
 Not Applicable.
