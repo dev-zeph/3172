@@ -1,0 +1,16 @@
+For this assesment, I chose the WHO(World Health Organization Website) and i am focusing on the "percievable" criterion.
+
+- Issue 1 : The charts on the website dont have an alt text that is descriptive enough.
+Recommendation 1: For complex sharts and graphs, provide a short text summary and include a detailed Description in the body.
+
+- Issue 2 : Some text overlayed on images are not very visisble
+Recommendation 1: Use a different contrast(darker color) as background color for text, to ensure better readability.
+Recommendation 2: Ensure all standard body text meets or exceeds the 4.5:1 contrast ratio required for Level AA.
+
+- Issue 3: Asynchronized closed captions on videos
+Recommendation 1: Provide high quality, human reviewed captions for all video content
+Recommendation 2: Provide audio descriptions for pre-recorded videos that contain important visual-only information (e.g., text displayed on screen that isn't spoken).
+
+
+Based on the UN's stated goal for its agencies to meet WCAG 2.1 Level AA, this is their clear target. The WHO's own communications plan emphasizes accessibility.
+However, due to rapid updates and sheer size of their website, its highly possib;e the new content cpmes with minor compromises.

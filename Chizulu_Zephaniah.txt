@@ -1,10 +1,10 @@
 # Activity / Lab / Assignment / Project Title
 
 
-* *Date Created*: 23 10 2025
-* *Last Modification Date*: 23 10 2025
+* *Date Created*: 1 11 2025
+* *Last Modification Date*: 3 11 2025
 
-* *Web Link*: <https://web.cs.dal.ca/~zephaniah/csci3172/labs/lab2/index.html>
+* *Web Link*: <https://3172.netlify.app/>
 * *Lab URL*: <https://git.cs.dal.ca/zephaniah/3172.git>
 
 
@@ -71,7 +71,8 @@ find ~/public_html/csci3172/labs/lab3 -type f -exec chmod 644 {} \;
    ```
 
 4. **Test website:**
-   `https://web.cs.dal.ca/~zephaniah/csci3172/activities/labs/lab3/index.html`
+
+   - https://3172.netlify.app/
 
 ## Acknowledgments
 Not Applicable.

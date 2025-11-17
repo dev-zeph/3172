@@ -1,0 +1,9 @@
+[build]
+  base = "labs/lab4"
+  publish = "public"
+  command = "npm install"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

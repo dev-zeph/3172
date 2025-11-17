@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function searchImages(query) {
         try {
-            const response = await fetch(`/api/images?query=${query}`);
+            const response = await fetch(`/.netlify/functions/unsplash?query=${query}`);
             const data = await response.json();
-            displayImages(data.results);
+            // If data is an array, use it directly, otherwise assume it's a single image
+            const images = Array.isArray(data) ? data : [data];
+            displayImages(images);
         } catch (error) {
             console.error('Error:', error);
         }
