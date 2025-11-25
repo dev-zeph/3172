@@ -1,4 +1,47 @@
+import { useState } from 'react';
+
 const About = () => {
+  // Skills data with categories
+  const allSkills = [
+    { name: 'JavaScript', category: 'Programming Languages', color: 'primary' },
+    { name: 'Python', category: 'Programming Languages', color: 'primary' },
+    { name: 'TypeScript', category: 'Programming Languages', color: 'primary' },
+    { name: 'SQL', category: 'Programming Languages', color: 'primary' },
+    { name: 'GLSL', category: 'Programming Languages', color: 'primary' },
+    { name: 'React.js', category: 'Frontend Development', color: 'success' },
+    { name: 'Three.js', category: 'Frontend Development', color: 'success' },
+    { name: 'WebXR', category: 'Frontend Development', color: 'success' },
+    { name: 'Tailwind CSS', category: 'Frontend Development', color: 'success' },
+    { name: 'Bootstrap', category: 'Frontend Development', color: 'success' },
+    { name: 'Node.js', category: 'Backend & Databases', color: 'warning' },
+    { name: 'Express.js', category: 'Backend & Databases', color: 'warning' },
+    { name: 'FastAPI', category: 'Backend & Databases', color: 'warning' },
+    { name: 'PostgreSQL', category: 'Backend & Databases', color: 'warning' },
+    { name: 'Supabase', category: 'Backend & Databases', color: 'warning' },
+    { name: 'Docker', category: 'DevOps & Cloud', color: 'info' },
+    { name: 'AWS EC2', category: 'DevOps & Cloud', color: 'info' },
+    { name: 'Azure CI/CD', category: 'DevOps & Cloud', color: 'info' },
+    { name: 'GitHub Actions', category: 'DevOps & Cloud', color: 'info' },
+    { name: 'Vercel', category: 'DevOps & Cloud', color: 'info' },
+    { name: 'OpenAI GPT-3.5', category: 'AI & Machine Learning', color: 'danger' },
+    { name: 'Mistral 7B', category: 'AI & Machine Learning', color: 'danger' },
+    { name: 'RAG Architecture', category: 'AI & Machine Learning', color: 'danger' },
+    { name: 'Scikit-learn', category: 'AI & Machine Learning', color: 'danger' },
+    { name: 'Langchain', category: 'AI & Machine Learning', color: 'danger' },
+  ];
+
+  const categories = [...new Set(allSkills.map(skill => skill.category))];
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  // Filter skills based on search term and category
+  const filteredSkills = allSkills.filter(skill => {
+    const matchesSearch = skill.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || skill.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div className="container mt-5">
       <h1 className="mb-4">About Me</h1>
@@ -67,57 +110,82 @@ const About = () => {
       <div className="card shadow-sm mb-4">
         <div className="card-body">
           <h2 className="h4 mb-3">Technical Skills</h2>
+          
+          {/* Search and Filter Controls */}
+          <div className="row mb-4">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="skillSearch" className="form-label">Search Skills</label>
+              <input
+                id="skillSearch"
+                type="text"
+                className="form-control"
+                placeholder="Type to search skills..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                aria-label="Search skills by name"
+              />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="categoryFilter" className="form-label">Filter by Category</label>
+              <select
+                id="categoryFilter"
+                className="form-select"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                aria-label="Filter skills by category"
+              >
+                <option value="All">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Category Filter Buttons */}
+          <div className="mb-4">
+            <div className="d-flex flex-wrap gap-2">
+              <button
+                className={`btn ${selectedCategory === 'All' ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
+                onClick={() => setSelectedCategory('All')}
+              >
+                All ({allSkills.length})
+              </button>
+              {categories.map(category => (
+                <button
+                  key={category}
+                  className={`btn ${selectedCategory === category ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category} ({allSkills.filter(s => s.category === category).length})
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Results Counter */}
+          <div className="mb-3">
+            <small className="text-muted">
+              Showing {filteredSkills.length} of {allSkills.length} skills
+              {searchTerm && ` matching "${searchTerm}"`}
+            </small>
+          </div>
+
+          {/* Filtered Skills Display */}
           <div className="row">
-            <div className="col-md-6 mb-3">
-              <h3 className="h6 fw-bold">Programming Languages</h3>
-              <div>
-                <span className="badge bg-primary me-2 mb-2">JavaScript</span>
-                <span className="badge bg-primary me-2 mb-2">Python</span>
-                <span className="badge bg-primary me-2 mb-2">TypeScript</span>
-                <span className="badge bg-primary me-2 mb-2">SQL</span>
-                <span className="badge bg-primary me-2 mb-2">GLSL</span>
+            {filteredSkills.length > 0 ? (
+              filteredSkills.map((skill, index) => (
+                <div key={index} className="col-auto mb-2">
+                  <span className={`badge bg-${skill.color} me-2`}>{skill.name}</span>
+                </div>
+              ))
+            ) : (
+              <div className="col-12">
+                <p className="text-muted text-center py-4">
+                  No skills found matching your search criteria.
+                </p>
               </div>
-            </div>
-            <div className="col-md-6 mb-3">
-              <h3 className="h6 fw-bold">Frontend Development</h3>
-              <div>
-                <span className="badge bg-success me-2 mb-2">React.js</span>
-                <span className="badge bg-success me-2 mb-2">Three.js</span>
-                <span className="badge bg-success me-2 mb-2">WebXR</span>
-                <span className="badge bg-success me-2 mb-2">Tailwind CSS</span>
-                <span className="badge bg-success me-2 mb-2">Bootstrap</span>
-              </div>
-            </div>
-            <div className="col-md-6 mb-3">
-              <h3 className="h6 fw-bold">Backend & Databases</h3>
-              <div>
-                <span className="badge bg-warning me-2 mb-2">Node.js</span>
-                <span className="badge bg-warning me-2 mb-2">Express.js</span>
-                <span className="badge bg-warning me-2 mb-2">FastAPI</span>
-                <span className="badge bg-warning me-2 mb-2">PostgreSQL</span>
-                <span className="badge bg-warning me-2 mb-2">Supabase</span>
-              </div>
-            </div>
-            <div className="col-md-6 mb-3">
-              <h3 className="h6 fw-bold">DevOps & Cloud</h3>
-              <div>
-                <span className="badge bg-info me-2 mb-2">Docker</span>
-                <span className="badge bg-info me-2 mb-2">AWS EC2</span>
-                <span className="badge bg-info me-2 mb-2">Azure CI/CD</span>
-                <span className="badge bg-info me-2 mb-2">GitHub Actions</span>
-                <span className="badge bg-info me-2 mb-2">Vercel</span>
-              </div>
-            </div>
-            <div className="col-md-12">
-              <h3 className="h6 fw-bold">AI & Machine Learning</h3>
-              <div>
-                <span className="badge bg-danger me-2 mb-2">OpenAI GPT-3.5</span>
-                <span className="badge bg-danger me-2 mb-2">Mistral 7B</span>
-                <span className="badge bg-danger me-2 mb-2">RAG Architecture</span>
-                <span className="badge bg-danger me-2 mb-2">Scikit-learn</span>
-                <span className="badge bg-danger me-2 mb-2">Langchain</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

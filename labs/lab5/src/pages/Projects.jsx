@@ -1,35 +1,61 @@
+import { useState, useEffect } from 'react';
+
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'B-ANAN',
-      link: 'https://b-anan.vercel.app/',
-      timeline: 'Spring 2025 - Current',
-      description: 'Business Revenue Prediction platform using advanced time-series forecasting models.',
-      achievements: [
-        'Engineered hybrid time-series forecasting models (SARIMAX-XGBoost, Random Forest, Markov Switching) for revenue prediction across macroeconomic scenarios',
-        'Integrated WorldBank API data as external regressors, simulating real-world financial dynamics for more robust predictions',
-        'Built normalized Supabase schema and integrated OpenAI\'s API (GPT-3.5) to automatically analyze user uploaded CSV with predicted revenue, generating predicted numbers to actionable business insights'
-      ],
-      technologies: ['SARIMAX', 'XGBoost', 'Random Forest', 'WorldBank API', 'Supabase', 'OpenAI API', 'GPT-3.5'],
-      role: 'Full Stack Developer',
-      problem: 'Created a comprehensive business intelligence platform for accurate revenue forecasting'
-    },
-    {
-      id: 2,
-      title: 'PDFreak AI',
-      timeline: 'Aug 2024 – Jan 2025',
-      description: 'Advanced AI-powered threat detection engine for SOC environments.',
-      achievements: [
-        'Engineered a novel, low-latency AI detection engine integrating static and dynamic analysis to identify zero-day threats, achieving an industry-competitive 83.1% F1-Score',
-        'Designed and deployed an optimized RAG architecture (Mistral 7B + VectorDB) for context-aware, real-time threat intelligence and MITRE mapping, cutting triage time by over 40%',
-        'Developed containerized FastAPI backend and React/Tailwind frontend for offline SOC deployment, enhancing system compliance and usability'
-      ],
-      technologies: ['AI/ML', 'Mistral 7B', 'VectorDB', 'FastAPI', 'React', 'Tailwind CSS', 'Docker', 'MITRE'],
-      role: 'Lead Developer',
-      problem: 'Built an intelligent threat detection system with real-time analysis and compliance'
-    }
-  ];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('http://localhost:5001/api/projects');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        
+        const data = await response.json();
+        setProjects(data.projects);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching projects:', err);
+        setError('Failed to load projects. Please make sure the backend server is running.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="container mt-5">
+        <div className="text-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading projects...</span>
+          </div>
+          <p className="mt-3 text-muted">Loading projects...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mt-5">
+        <div className="alert alert-danger" role="alert">
+          <h4 className="alert-heading">Error Loading Projects</h4>
+          <p>{error}</p>
+          <hr />
+          <p className="mb-0">
+            <small>Make sure to start the backend server: <code>cd backend && npm start</code></small>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">
@@ -48,13 +74,18 @@ const Projects = () => {
                     <h2 className="h4 mb-1">
                       {project.link ? (
                         <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
-                          {project.title} <i className="bi bi-box-arrow-up-right small"></i>
+                          {project.name} <i className="bi bi-box-arrow-up-right small"></i>
                         </a>
                       ) : (
-                        project.title
+                        project.name
                       )}
                     </h2>
-                    <p className="text-muted small mb-0">{project.timeline}</p>
+                    <p className="text-muted small mb-1">
+                      <strong>Author:</strong> {project.author} | <strong>Timeline:</strong> {project.timeline}
+                    </p>
+                    <p className="text-muted small mb-0">
+                      <strong>Languages:</strong> {project.languages.join(', ')}
+                    </p>
                   </div>
                   <span className="badge bg-primary">{project.role}</span>
                 </div>
@@ -68,11 +99,6 @@ const Projects = () => {
                       <li key={index} className="mb-2">{achievement}</li>
                     ))}
                   </ul>
-                </div>
-                
-                <div className="mb-3">
-                  <h3 className="h6 fw-bold">Problem Solved:</h3>
-                  <p className="text-muted small">{project.problem}</p>
                 </div>
                 
                 <div>

@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand" to="/">My Portfolio</Link>
           <button 
@@ -18,7 +19,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav ms-auto align-items-center">
               <li className="nav-item">
                 <Link className="nav-link" to="/">Home</Link>
               </li>
@@ -27,6 +28,9 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/projects">Projects</Link>
+              </li>
+              <li className="nav-item ms-lg-3">
+                <ThemeToggle />
               </li>
             </ul>
           </div>

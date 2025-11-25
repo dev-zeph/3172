@@ -1,0 +1,36 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "B-ANAN",
+      "author": "Zephaniah Chizulu",
+      "languages": ["Python", "JavaScript", "TypeScript"],
+      "technologies": ["React", "FastAPI", "Supabase", "OpenAI GPT-3.5", "SARIMAX", "XGBoost", "Random Forest"],
+      "description": "A Business Intelligence (BI) platform for forecasting banana prices across multiple Latin American countries using hybrid machine learning models (SARIMAX, XGBoost, Random Forest). Integrates WorldBank API data and OpenAI GPT-3.5 for AI-driven insights.",
+      "link": "https://b-anan.vercel.app/",
+      "timeline": "Spring 2025 - Current",
+      "role": "Full-Stack Developer & ML Engineer",
+      "achievements": [
+        "Built hybrid forecasting models combining SARIMAX, XGBoost, and Random Forest for multi-country price prediction",
+        "Integrated WorldBank API for real-time economic data and OpenAI GPT-3.5 for AI-powered insights",
+        "Developed full-stack BI platform using React (TypeScript) frontend and FastAPI backend with Supabase database"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "PDFreak AI",
+      "author": "Zephaniah Chizulu",
+      "languages": ["Python", "JavaScript"],
+      "technologies": ["React", "Tailwind CSS", "FastAPI", "Mistral 7B", "RAG", "Langchain", "Docker"],
+      "description": "An AI-powered PDF threat detection system achieving 83.1% F1-Score using Mistral 7B with Retrieval-Augmented Generation (RAG) architecture. Reduces SOC analyst triage time by 40% through intelligent document analysis.",
+      "link": null,
+      "timeline": "Aug 2024 - Jan 2025",
+      "role": "Lead Developer",
+      "achievements": [
+        "Achieved 83.1% F1-Score in AI-powered PDF malware detection using Mistral 7B with RAG architecture",
+        "Reduced SOC analyst triage time by 40% through intelligent automated threat analysis",
+        "Built containerized solution with FastAPI backend and React/Tailwind frontend for SOC deployment"
+      ]
+    }
+  ]
+}
