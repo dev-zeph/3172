@@ -1,17 +1,26 @@
 [build]
   base = "labs/lab5"
-  command = "npm install && npm run build"
+  command = "npm install && npm run build && cd backend && npm install"
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 [functions]
   directory = "backend/"
+  node_bundler = "esbuild"
+
+# For local development
+[dev]
+  command = "npm run dev"
+  targetPort = 3000
+  port = 8888
+  publish = "dist"
+  autoLaunch = true
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  to = "/.netlify/functions/server/:splat"
   status = 200
 
 [[redirects]]
