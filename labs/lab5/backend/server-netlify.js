@@ -1,22 +1,25 @@
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
-
-
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const express = require('express');
+const serverless = require('serverless-http');
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const router = express.Router();
 
+// Enable CORS
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
-app.use(cors());
-app.use(express.json());
+// Parse JSON bodies
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 // In-memory storage for messages (simulating a database)
 let messages = [];
@@ -51,82 +54,16 @@ function isValidMessage(message) {
   return !htmlRegex.test(message);
 }
 
-app.get('/api/projects', (req, res) => {
-  try {
-    const projectsPath = path.join(__dirname, 'projects.json');
-    const projectsData = fs.readFileSync(projectsPath, 'utf8');
-    const projects = JSON.parse(projectsData);
-    
-    res.json(projects);
-  } catch (error) {
-    console.error('Error reading projects:', error);
-    res.status(500).json({ error: 'Failed to fetch projects' });
-  }
+// Routes
+router.get('/', (req, res) => {
+  res.json({ message: 'Hello World - Contact API is running' });
 });
 
-
-app.get('/api/weather/:city', async (req, res) => {
-  const { city } = req.params;
-  const API_KEY = process.env.OPENWEATHER_API_KEY;
-  
-  console.log('Weather API called for city:', city);
-  console.log('API Key exists:', !!API_KEY);
-  console.log('API Key length:', API_KEY ? API_KEY.length : 0);
-  
-  if (!API_KEY) {
-    console.error('API key not configured!');
-    return res.status(500).json({ error: 'API key not configured' });
-  }
-  
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-    console.log('Fetching weather from URL:', url.replace(API_KEY, 'HIDDEN'));
-    
-    const response = await fetch(url);
-    
-    console.log('Weather API response status:', response.status);
-    
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Weather API error response:', errorData);
-      return res.status(response.status).json({ 
-        error: errorData.message || 'Weather data not found',
-        details: errorData
-      });
-    }
-    
-    const data = await response.json();
-    console.log('Weather data received successfully for:', data.name);
-    
-    // Extract relevant information
-    const weatherData = {
-      city: data.name,
-      temperature: data.main.temp,
-      humidity: data.main.humidity,
-      description: data.weather[0].description,
-      icon: data.weather[0].icon,
-      feelsLike: data.main.feels_like,
-      pressure: data.main.pressure
-    };
-    
-    res.json(weatherData);
-  } catch (error) {
-    console.error('Error fetching weather:', error.message);
-    console.error('Full error:', error);
-    res.status(500).json({ 
-      error: 'Failed to fetch weather data',
-      message: error.message 
-    });
-  }
+router.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend server is running', timestamp: new Date().toISOString() });
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Backend server is running' });
-});
-
-// Contact form endpoint
-app.post('/api/contact', (req, res) => {
+router.post('/contact', (req, res) => {
   try {
     const { name, email, subject, message, consent } = req.body;
 
@@ -197,6 +134,7 @@ app.post('/api/contact', (req, res) => {
 
     // Save to in-memory storage
     messages.push(newMessage);
+    console.log('Message saved:', newMessage.id);
 
     res.status(201).json({
       success: true,
@@ -216,8 +154,7 @@ app.post('/api/contact', (req, res) => {
   }
 });
 
-// Get messages endpoint
-app.get('/api/messages', (req, res) => {
+router.get('/messages', (req, res) => {
   try {
     // Return messages sorted by most recent first
     const sortedMessages = messages
@@ -245,9 +182,6 @@ app.get('/api/messages', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
-  console.log('Environment variables loaded:');
-  console.log('- OPENWEATHER_API_KEY:', process.env.OPENWEATHER_API_KEY ? 'SET ✓' : 'NOT SET ✗');
-  console.log('- PORT:', PORT);
-});
+app.use('/api', router);
+
+module.exports.handler = serverless(app);

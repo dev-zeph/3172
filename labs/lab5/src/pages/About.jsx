@@ -111,7 +111,6 @@ const About = () => {
         <div className="card-body">
           <h2 className="h4 mb-3">Technical Skills</h2>
           
-          {/* Search and Filter Controls */}
           <div className="row mb-4">
             <div className="col-md-6 mb-3">
               <label htmlFor="skillSearch" className="form-label">Search Skills</label>
@@ -142,7 +141,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Category Filter Buttons */}
           <div className="mb-4">
             <div className="d-flex flex-wrap gap-2">
               <button
@@ -163,15 +161,13 @@ const About = () => {
             </div>
           </div>
 
-          {/* Results Counter */}
           <div className="mb-3">
             <small className="text-muted">
               Showing {filteredSkills.length} of {allSkills.length} skills
               {searchTerm && ` matching "${searchTerm}"`}
             </small>
           </div>
-
-          {/* Filtered Skills Display */}
+ 
           <div className="row">
             {filteredSkills.length > 0 ? (
               filteredSkills.map((skill, index) => (

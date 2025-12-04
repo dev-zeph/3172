@@ -1,0 +1,110 @@
+.contact-form-container {
+  padding: 2rem 0;
+  min-height: 60vh;
+}
+
+.contact-form-container .card {
+  border: none;
+  border-radius: 0.75rem;
+}
+
+.contact-form-container .card-body {
+  padding: 2rem;
+}
+
+.contact-form-container .form-control {
+  border-radius: 0.5rem;
+  border: 2px solid #e9ecef;
+  padding: 0.75rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.contact-form-container .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.contact-form-container .form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.contact-form-container .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.contact-form-container .form-check-input {
+  border-radius: 0.25rem;
+  border: 2px solid #e9ecef;
+}
+
+.contact-form-container .form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.contact-form-container .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+}
+
+.contact-form-container .btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  transform: translateY(-1px);
+}
+
+.contact-form-container .btn-primary:disabled {
+  opacity: 0.65;
+  transform: none;
+}
+
+.contact-form-container .alert {
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 500;
+}
+
+.contact-form-container .alert-success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.contact-form-container .alert-danger {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+.contact-form-container .invalid-feedback {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.contact-form-container .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form-container .text-danger {
+  color: #dc3545 !important;
+}
+
+.contact-form-container .spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 768px) {
+  .contact-form-container {
+    padding: 1rem 0;
+  }
+  
+  .contact-form-container .card-body {
+    padding: 1.5rem;
+  }
+}
